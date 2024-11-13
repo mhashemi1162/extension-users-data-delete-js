@@ -24,13 +24,11 @@ Current supported environment variables are:
 ```bash
 # Environment
 NODE_ENV=                                                     # Required, environment mode (development|production)
-SUPPLIER_COMPANY=                                             # Required, data supplier company
 
 # Time Parameters
 CONTINUE_LAST_STATE=                                          # Required, continue from the last state that was saved in the database, or start over at START-DATE (true|false)
 START_DATE=                                                   # Optional, from date (example: 02-19-2023 00:00:00)
 END_DATE=                                                     # Optional, to date (example: 02-20-2023 00:00:00)
-INTERVAL_HOURS=                                               # Required, time interval of each data transforming (default: 1)
 
 # MySQL Database
 DATABASE_HOST=                                                # Required, Url of the mysql service. Default: 127.0.0.1 
@@ -39,19 +37,11 @@ DATABASE_USER=                                                # Required, Userna
 DATABASE_PASS=                                                # Required, Password of the mysql service.
 DATABASE_NAME=                                                # Required, Database of the mysql service.
 
-# Redshift Database
-REDSHIFT_START=                                               # Required, start redshift service or not (true|false)
-REDSHIFT_STOP=                                                # Required, stop redshift service or not (true|false)
-REDSHIFT_STATUS_FUNCTION_PROFILE=                             # Optional, user's profile name which has access to start and stop the redshift
-
-REDSHIFT_DATABASE_HOST=                                       # Required, Url of the redshift service
-REDSHIFT_DATABASE_PORT=                                       # Required, Port of the redshift service. Default: 5439
 REDSHIFT_DATABASE_NAME=                                       # Required, Database of the redshift service
 REDSHIFT_DATABASE_USER=                                       # Required, Username of the redshift service
-REDSHIFT_DATABASE_PASS=                                       # Required, Password of the redshift service
 REDSHIFT_SECRET_ARN=                                          # Required, secret ARN of the redshift service
 REDSHIFT_CLUSTER_ID=                                          # Required, cluster identifier of the redshift service
-REDSHIFT_DATABASE_POOL_TIMEOUT_SEC=                           # Required, pooling the raw data receipt timeout
+REDSHIFT_RETRY_COUNT=
 
 # AWS Parameters
 AWS_REGION=                                                   # Required, aws region
@@ -60,8 +50,6 @@ AWS_SECRET_KEY=                                               # Required, aws se
 
 # S3 Parameters
 AWS_SOURCE_BUCKET_NAME=                                       # Required, seller bucket's name
-AWS_TMP_BUCKET_NAME=                                          # Required, swash archive bucket's name
-SOURCE_BUCKET_POOL_TIMEOUT_SEC=                               # Required, seller bucket's pooling timeout
 
 # Mailgun Parameters
 MAILGUN_API_KEY=                                              # Required, mailgun API key

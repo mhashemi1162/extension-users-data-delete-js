@@ -22,7 +22,7 @@ function createLogger(): winston.Logger {
 				level: 'info',
 				filename: `DataSellers-%DATE%.log`,
 				datePattern: 'YYYY-MM-DD',
-				dirname: `/tmp/swash/${process.env.SUPPLIER_COMPANY}/${process.env.REDSHIFT_CLUSTER_ID}`,
+				dirname: `/tmp/swash/extension-users-data-delete`,
 				zippedArchive: true,
 				handleExceptions: true,
 				maxSize: '100mb',
