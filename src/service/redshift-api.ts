@@ -25,7 +25,7 @@ const client = new RedshiftDataClient({
 });
 export async function callDeleteUser_sp(wallet) {
 	return new Promise(async(resolve, reject) => {
-		const query = `CALL extension_users_data_delete_sp(${wallet});`;
+		const query = `CALL extension_users_data_delete_sp('${wallet}');`;
 		const query_params = {
 			Database: process.env.REDSHIFT_DATABASE_NAME,
 			Sql: query,
