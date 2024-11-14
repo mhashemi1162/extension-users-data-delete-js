@@ -34,7 +34,7 @@ export async function callDeleteUser_sp(wallet) {
 			DbUser: process.env.REDSHIFT_DATABASE_USER,
 		};
 		try {
-			logger.info(`Data deletation SP for user: ${(dateFormat)(new Date(wallet))} has been started`);
+			logger.info(`Data deletation SP for user: ${wallet} has been started`);
 			let status_params = {
 				Id: '',
 			};
