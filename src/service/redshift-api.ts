@@ -59,13 +59,13 @@ export async function callDeleteUser_sp(wallet) {
 			}
 			if(status_response.Status != 'FINISHED') {
 				logger.error(`Error executing query: ${query_params.Sql} Status: ${status_response.Status}`);
-				reject(false);
+				resolve(false);
 			} else {
 				resolve(true);
 			}
 		} catch(e) {
 			logger.error(`Error executing query: ${query_params.Sql} Error: ${e.message}`);
-			reject(false);
+			resolve(false);
 		}
 	});
 }
