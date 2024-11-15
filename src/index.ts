@@ -52,9 +52,8 @@ dotenv.config();
 		lastStat = ret;
 	});
 	logger.info(`Last update: ${lastStat?.request_ts || 'never'}`);
-	let request_ts = (process.env.CONTINUE_LAST_STATE === "true" && parseInt(lastStat?.request_ts)) ? parseInt(lastStat?.request_ts) : toUTCTime(new Date(process.env.START_DATE));
 	const interval = 24 * 60 * 60 * 1000;
-	request_ts += interval;
+	let request_ts = (process.env.CONTINUE_LAST_STATE === "true" && parseInt(lastStat?.request_ts)) ? parseInt(lastStat?.request_ts) + interval : toUTCTime(new Date(process.env.START_DATE));
 	let shouldContinue = process.env.END_DATE ? (dateFormat)(new Date(request_ts)) < (dateFormat)(new Date(Math.min(toUTCTime(new Date(process.env.END_DATE)), toUTCTime(new Date())))) : (dateFormat)(new Date(request_ts)) < (dateFormat)(new Date());
 	if(!shouldContinue) {
 		logger.info(`Nothing to be deleted, time to shutdown`);
