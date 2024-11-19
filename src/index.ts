@@ -65,7 +65,7 @@ dotenv.config();
 		let delete_user_status = 'email,wallet,status<br>';
 		let usersDataDeleteFileUploaded = Boolean(await ifS3FilesExist(request_ts));
 		if(!usersDataDeleteFileUploaded) {
-			logger.info(`The users data delete file for ${(dateFormat)(new Date(request_ts))} has not been uploaded, time to shutdown`);
+			logger.info(`The users data delete file for ${(dateFormat)(new Date(request_ts))} has not been uploaded`);
 		} else {
 			logger.info(`The users data delete file for ${(dateFormat)(new Date(request_ts))} has been uploaded into ${process.env.AWS_SOURCE_BUCKET_NAME} S3 bucket`);
 			await unloadUsersDataDeleteFile(request_ts);
@@ -106,5 +106,6 @@ dotenv.config();
 		request_ts += interval;
 		shouldContinue = process.env.END_DATE ? (dateFormat)(new Date(request_ts)) < (dateFormat)(new Date(Math.min(toUTCTime(new Date(process.env.END_DATE)), toUTCTime(new Date())))) : (dateFormat)(new Date(request_ts)) < (dateFormat)(new Date());
 	}
+	logger.info(`Nothing to be deleted, time to shutdown`);
 	process.exit(0);
 })();
