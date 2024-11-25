@@ -4,8 +4,6 @@ import * as _path from 'path';
 import * as moment from 'moment';
 import * as fs from 'fs';
 import { parse } from 'csv-parse';
-
-
 import {
 	logger
 }
