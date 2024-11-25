@@ -15,7 +15,7 @@ dotenv.config();
 export async function ifS3FilesExist(request_ts) {
 	return new Promise(async(resolve, reject) => {
 		try {
-			const s3Path = `year=${moment(request_ts).format("YYYY")}/month=${moment(request_ts).format("MM")}/day=${moment(request_ts).format("DD")}/user-data-delete.csv`;
+			const s3Path = `gdpr-requests/year=${moment(request_ts).format("YYYY")}/month=${moment(request_ts).format("MM")}/day=${moment(request_ts).format("DD")}/user-data-delete.csv`;
 			let command = `aws s3 ls s3://${process.env.AWS_SOURCE_BUCKET_NAME}/${s3Path} --profile clickstream | wc -l`;
 			logger.info(`command ${command} is being executed`);
 			let result = parseInt(await shell.exec(command));
@@ -37,7 +37,7 @@ export async function unloadUsersDataDeleteFile(request_ts) {
 			if(fs.existsSync(path)) {
 				fs.unlinkSync(path);
 			}
-			const s3Path = `year=${moment(request_ts).format("YYYY")}/month=${moment(request_ts).format("MM")}/day=${moment(request_ts).format("DD")}/user-data-delete.csv`;
+			const s3Path = `gdpr-requests/year=${moment(request_ts).format("YYYY")}/month=${moment(request_ts).format("MM")}/day=${moment(request_ts).format("DD")}/user-data-delete.csv`;
 			let command = `aws s3 cp s3://${process.env.AWS_SOURCE_BUCKET_NAME}/${s3Path} ./tmp/user-data-delete.csv --profile clickstream`;
 			logger.info(`command ${command} is being executed`);
 			await shell.exec(command);
