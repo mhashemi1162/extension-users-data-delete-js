@@ -54,7 +54,8 @@ export async function callReadCurrentFileContent() {
 			fs.createReadStream(path)
 			.pipe(parse({ delimiter: ",", from_line: 2 }))
 			.on("data", function (row) {
-				records.push(row);
+				if (row.length > 1)
+					records.push(row);
 			})
 			.on("end", function () {
 				if(fs.existsSync(path)) {
